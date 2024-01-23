@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+li span {
+    flex-grow: 1;
+}
+
+.delete {
+    background-color: #f44336;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color: #d32f2f;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>My To-Do List</h1>
+    <input type="text" id="newTask" placeholder="Add a new task">
+    <button id="addTask">Add Task</button>
+    <ul id="taskList">
+        <!-- Tasks will be added dynamically here -->
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    // Add Task
+    $('#addTask').on('click', function() {
+        var newTask = $('#newTask').val();
+        if (newTask !== '') {
+            $('#taskList').append('<li><span>' + newTask + '</span><button class="delete">Delete</button></li>');
+            $('#newTask').val('');
+        }
+    });
+
+    // Delete Task
+    $('#taskList').on('click', '.delete', function() {
+        $(this).closest('li').remove();
+    });
+});
+
+</script>
+</body>
+</html>
